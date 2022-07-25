@@ -28,7 +28,13 @@
     <img src="" id="rainbow" />
     <script>
       console.log("fetching a rainbow...");
-      fetch("rainbow.jpg");
+      fetch("images/rainbow.jpg")
+        .then((response) => {
+          return response.blob();
+        })
+        .then((blob) => {
+          document.getElementById("rainbow").src = URL.createObjectURL(blob);
+        });
     </script>
   </body>
 </html>
