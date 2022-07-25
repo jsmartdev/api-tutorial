@@ -30,13 +30,21 @@
     <img src="" id="rainbow" />
     <script>
       console.log("fetching a rainbow...");
-      fetch("images/rainbow.jpg")
+
+      showRainbow()
         .then((response) => {
-          return response.blob();
+          console.log("yay!");
         })
-        .then((blob) => {
-          document.getElementById("rainbow").src = URL.createObjectURL(blob);
+        .catch((error) => {
+          console.log("error!");
+          console.error(error);
         });
+
+      async function showRainbow() {
+        const response = await fetch("images/rainbow.jpg");
+        const blob = await response.blob();
+        document.getElementById("rainbow").src = URL.createObjectURL(blob);
+      }
     </script>
   </body>
 </html>
